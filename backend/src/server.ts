@@ -1,8 +1,15 @@
 import express from "express";
+import { connectDB } from "../config/db";
 
-const app = express()
+const app = express();
 
-app.listen(8000, () => {
-    console.log(`server started at localhost 8000`);
-    
-})
+const PORT = 8000;
+
+app.get("/products", (req, res) => {
+  res.send("Server is ready");
+});
+
+app.listen(PORT, () => {
+  connectDB();
+  console.log(`server started at http://localhost:${PORT}`);
+});
