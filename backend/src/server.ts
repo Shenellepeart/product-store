@@ -1,13 +1,14 @@
 import express from "express";
 import { connectDB } from "../config/db";
+import productRoutes from "../routes/product.route";
 
 const app = express();
 
-const PORT = 8000;
+app.use(express.json()); // allows us to accept json data in the req.body
 
-app.get("/products", (req, res) => {
-  res.send("Server is ready");
-});
+app.use("/api/products", productRoutes);
+
+const PORT = 8000;
 
 app.listen(PORT, () => {
   connectDB();
